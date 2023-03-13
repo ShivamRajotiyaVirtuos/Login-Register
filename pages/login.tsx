@@ -6,10 +6,11 @@ import bodyimg from "./images/book-my-time-img.svg";
 import virtuoslogo from "./images/virtuos-virtuez-logo.svg";
 import { useState } from "react";
 import Image from "next/image";
+import React from "react";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState<any>("");
+  const [password, setPassword] = useState<any>("");
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -70,7 +71,7 @@ const Login = () => {
             <div>
               <Link
                 style={{ textDecoration: "none", color: "#00a2fe" }}
-                href={"/Pages/Register"}
+                href={"/register"}
               >
                 Dont have an account? Register.
               </Link>

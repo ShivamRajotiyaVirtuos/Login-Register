@@ -6,12 +6,13 @@ import bodyimg from "./images/book-my-time-img.svg";
 import virtuoslogo from "./images/virtuos-virtuez-logo.svg";
 import { useState } from "react";
 import Image from "next/image";
+import React from "react";
 
 const Register = () => {
-  const [email, setEmail] = useState("");
-  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState<any>("");
+  const [fullname, setFullname] = useState<string>("");
 
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState<any>("");
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(email, fullname, password);
