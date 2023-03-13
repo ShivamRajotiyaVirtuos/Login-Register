@@ -8,11 +8,11 @@ import { useState } from "react";
 import Image from "next/image";
 import React from "react";
 
-const Register = () => {
-  const [email, setEmail] = useState<any>("");
+const Register: React.FC = () => {
+  const [email, setEmail] = useState<unknown>("");
   const [fullname, setFullname] = useState<string>("");
 
-  const [password, setPassword] = useState<any>("");
+  const [password, setPassword] = useState<unknown>("");
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(email, fullname, password);
@@ -83,7 +83,7 @@ const Register = () => {
             <div>
               <Link
                 style={{ textDecoration: "none", color: "#00a2fe" }}
-                href={"/login"}
+                href={"/loginform"}
               >
                 Have an account? Log In.
               </Link>

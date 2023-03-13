@@ -6,16 +6,45 @@ import bodyimg from "./images/book-my-time-img.svg";
 import virtuoslogo from "./images/virtuos-virtuez-logo.svg";
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from 'next/router'
+// const users = require('../data/users.json');
+import jwt from "jsonwebtoken";
+
 import React from "react";
 
-const Login = () => {
-  const [email, setEmail] = useState<any>("");
-  const [password, setPassword] = useState<any>("");
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const Login: React.FC = () => {
+  const [email, setEmail] = useState<unknown>("");
+  const [password, setPassword] = useState<unknown>("");
+  
+  const router = useRouter()
 
-    console.log(email, password);
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    const res = await fetch('/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password })
+    }).then((t) => t.json())
+const token = res.token
+    if (token) {
+      const json = jwt.decode(token);
+      console.log(token);
+      // console.log('Success');
+      // router.push("/homepage");
+      
+      // redirect to the dashboard page or do something else
+    } else {
+      console.log('Errorss');
+      alert("invalid email or password");
+      // show error message to the user
+    }
+    setEmail("");
+    setPassword('');
   };
+// console.log(users);
+
   // console.log(fullname, password);
   return (
     <div className="main">
@@ -33,7 +62,7 @@ const Login = () => {
             <h2>Welcome</h2>
           </div>
           <div className="form1">
-            <form className="form">
+            <form onSubmit={handleSubmit}className="form">
               <div className="text-field">
                 <TextField
                   style={{ width: "250px" }}
@@ -61,7 +90,7 @@ const Login = () => {
               </div>
 
               <Button
-                onClick={handleSubmit}
+                type="submit"
                 style={{ borderRadius: "50px", backgroundColor: "#00a2fe" }}
                 variant="contained"
               >
