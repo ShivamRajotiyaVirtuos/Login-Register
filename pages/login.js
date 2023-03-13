@@ -72,7 +72,7 @@ const Login = () => {
                 style={{ textDecoration: "none", color: "#00a2fe" }}
                 href={"/Pages/Register"}
               >
-                Dont have an account? Register....
+                Dont have an account? Register.
               </Link>
             </div>
           </div>
