@@ -6,46 +6,36 @@ import bodyimg from "./images/book-my-time-img.svg";
 import virtuoslogo from "./images/virtuos-virtuez-logo.svg";
 import { useState } from "react";
 import Image from "next/image";
+import { signIn } from "next-auth/react";
 import { useRouter } from 'next/router'
-// const users = require('../data/users.json');
-import jwt from "jsonwebtoken";
-
+import axios from "axios";
 import React from "react";
+import Cookies from "js-cookie";
 
-const Login: React.FC = () => {
+
+const Loginform: React.FC = () => {
   const [email, setEmail] = useState<unknown>("");
   const [password, setPassword] = useState<unknown>("");
-  
-  const router = useRouter()
-
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+  const router = useRouter();
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch('/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ email, password })
-    }).then((t) => t.json())
-const token = res.token
-    if (token) {
-      const json = jwt.decode(token);
-      console.log(token);
-      // console.log('Success');
-      // router.push("/homepage");
-      
-      // redirect to the dashboard page or do something else
-    } else {
-      console.log('Errorss');
-      alert("invalid email or password");
-      // show error message to the user
-    }
-    setEmail("");
-    setPassword('');
-  };
-// console.log(users);
 
-  // console.log(fullname, password);
+    const credentials = { email, password };
+
+    const user = await axios.post("/api/auth/login", credentials);
+
+    console.log(user);
+    setEmail("")
+    setPassword("")
+    if(user.status === 200){
+      // Cookies.set("Set-Cookie", "true");
+
+      router.push('/dashboard/user');
+    }
+    
+
+  };
+ 
   return (
     <div className="main">
       <div className="header">
@@ -120,4 +110,4 @@ const token = res.token
   );
 };
 
-export default Login;
+export default Loginform;

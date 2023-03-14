@@ -3,13 +3,9 @@
     "users": [
       {
         "email": "abc@gmail.com",
-        "password": "$2a$10$0foW58pGnU0p5Z5tfruH4.6Xc6jcgCuwoYmb6cQQBjVjfz6H.GtnG"
-      },
-      {
-        "email": "abc2@gmail.com",
         "password": "1234"
-    
       }
+  
     ]
   }
   

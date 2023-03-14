@@ -1,9 +1,16 @@
+import Link from 'next/link'
 import React from 'react'
 
-const homepage = () => {
+const Homepage = () => {
   return (
-    <div>homepage</div>
+    <div>Homepage
+      <Link href={"/loginform"}>Login</Link>
+
+
+
+
+    </div>
   )
 }
 
-export default homepage
+export default Homepage
